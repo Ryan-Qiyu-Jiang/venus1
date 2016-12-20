@@ -4,54 +4,59 @@
        <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
    </head>
    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="#"><strong>VENUS </strong></a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active" role="presentation"><a href="#">Get Started</a></li>
-                    <li role="presentation"><a href="#">About Venus</a></li>
-                </ul>
-            </div>
+    <div class="container">
+        <div class="navbar-header"><a class="navbar-brand navbar-link" href="#"><strong>VENUS </strong></a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
-    </nav>
-    <div id="signup">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center"><strong>VENUS</strong> </h1>
-                <p class="text-center">Heated like your new date.</p>
-            </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" role="presentation"><a href="#">Get Started</a></li>
+                <li role="presentation"><a href="#">About Venus</a></li>
+            </ul>
         </div>
     </div>
-     <div id="tab-forms">
-     <uib-tabset active="active" >
-               <uib-tab index="0" heading="LOG-IN">
-                    <div class="blue-container">
-                        <h2 class="text-center form-header"><strong>Login</strong> with Facebook.</h2>
-                        <div class="button-padding">
-                            <button class="btn btn-primary btn-block" type="button" id="loginbutton">Login</button>
-                        </div>
+</nav>
+<div id="signup">
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center"><strong>VENUS</strong> </h1>
+            <p class="text-center">Heated like your new date.</p>
+        </div>
+    </div>
+</div>
+<div id="tab-forms">
+    <div>
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="#tab-1" role="tab" data-toggle="tab"><strong>LOG-IN </strong></a></li>
+            <li class="active"><a href="#tab-2" role="tab" data-toggle="tab"><strong>SIGN-UP</strong></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" role="tabpanel" id="tab-1">
+                <div class="blue-container">
+                    <h2 class="text-center form-header"><strong>Login</strong> with Facebook.</h2>
+                    <div class="button-padding">
+                        <button class="btn btn-primary btn-block" type="button" id="loginbutton">Login</button>
                     </div>
-                </uib-tab>
-                <uib-tab index="1" heading="SIGN-UP">
-                    <div class="register-photo">
-                        <div class="form-container">
-                            <form method="post">
-                                <h2 class="text-center"><strong>Sign-up</strong> with Facebook.</h2>
-                                <div class="form-group">
-                                    <input class="form-control" type="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group"></div>
-                                <div class="form-group"></div>
-                                <div class="form-group" id="age">
+                </div>
+            </div>
+            <div class="tab-pane active" role="tabpanel" id="tab-2">
+                <div class="register-photo">
+                    <div class="form-container">
+                        <form method="post">
+                            <h2 class="text-center"><strong>Sign-up</strong> with Facebook.</h2>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group"></div>
+                            <div class="form-group"></div>
+                            <div class="form-group" id="age">
 
-<input type="number" placeholder="Age" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label class="control-label">
-                                            <input type="checkbox">I agree to the license terms.</label>
+                                <input type="number" placeholder="Age" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label class="control-label">
+                                        <input type="checkbox">I agree to the license terms.</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -60,6 +65,7 @@
                             </form>
                         </div>
                     </div>
-                </uib-tab>
-      </uib-tabset>
-      </div>
+                </div>
+            </div>
+        </div>
+    </div>
