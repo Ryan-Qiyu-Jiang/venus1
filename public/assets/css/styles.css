@@ -89,7 +89,7 @@ div#spacer {
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color:#1e2833;
   background-color:#ffffff;
-  border:1px solid #f4476b;
+  border:1px solid #fff;
   border-bottom-color:transparent;
   cursor:default;
 }
@@ -124,7 +124,11 @@ body {
   border-bottom:0;
   margin:auto;
 }
-
+ul.nav.nav-tabs{
+  width:90%;
+ font-weight: bold;
+  margin:auto;
+}
 div#age.form-group {
   /*width:90px;*/
   /*margin:10px auto;*/
@@ -170,4 +174,5 @@ h2.text-center.form-header {
     color:#505e6c;
   }
 }
+
 
