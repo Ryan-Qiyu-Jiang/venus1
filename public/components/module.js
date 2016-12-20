@@ -1,1 +1,1 @@
-var venusApp=angular.module('venusApp',['loginApp', 'ngRoute']);
+var venusApp=angular.module('venusApp',['loginApp', 'ngRoute','ngAnimate', 'ngSanitize', 'ui.bootstrap']);
