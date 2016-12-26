@@ -3,31 +3,43 @@ module('loginApp').
 component('login', {
 	templateUrl:
 	'views/login.html',
-	controller:['$scope','$http',
-	function($scope,$http){
+	controller:['$scope','$http','$location','userService',
+	function($scope,$http,$location,userService){
 		console.log("hey from login controller");
 
 		var editUser=function(){
-				$http.put('/user/'+$scope.user.id,$scope.user).then(function successCallback(response) {
+			$http.put('/user/'+$scope.user.id,$scope.user).then(function successCallback(response) {
 		    // this callback will be called asynchronously
 		    // when the response is available
 		    getUser();
-		  }, function errorCallback(response) {
+		    //already update service in gerUser()
+		}, function errorCallback(response) {
 		    // called asynchronously if an error occurs
 		    // or server returns response with an error status.
-		  });
+		});
 
 		}
 
 		var getUser=function(){
 			FB.api('/me', function(response) {
-						console.log('Good to see you, ' + response.name + '.');
-						$scope.user=response;
+				console.log('Good to see you, ' + response.name + '.');
+				$scope.user=response;
 						//console.log($scope.user);
 						$http.get('/login/'+$scope.user.id).then(function successCallback(response) {
 					    // this callback will be called asynchronously
 					    // when the response is available
+					    //might be useful one day
 					    $scope.user=response.data;
+					    /*
+					    if($scope.user.gender==="male"){
+					    	$scope.user.gender="man";
+					    }else{
+					    	if($scope.user.gender==="female"){
+					    		$scope.user.gender="woman";
+					    	}
+					    }*/
+					    userService.set($scope.user);
+
 					    console.log($scope.user);
 					}, function errorCallback(response) {
 					    // called asynchronously if an error occurs
@@ -43,15 +55,16 @@ component('login', {
 						console.log(response);
 						$scope.user=response;
 						//console.log($scope.user);
-					});
-					$http.post('/signup',$scope.user).then(function successCallback(response) {
-					    // this callback will be called asynchronously
-					    // when the response is available
-					    console.log(response);
-					   //console.log(response.data);
-					}, function errorCallback(response) {
-					    // called asynchronously if an error occurs
-					    // or server returns response with an error status.
+						userService.signup($scope.user);
+						$http.post('/signup',$scope.user).then(function successCallback(response) {
+							    // this callback will be called asynchronously
+							    // when the response is available
+							    console.log(response);
+							   //console.log(response.data);
+							}, function errorCallback(response) {
+							    // called asynchronously if an error occurs
+							    // or server returns response with an error status.
+							});
 					});
 				}
 				else {
@@ -71,7 +84,16 @@ component('login', {
 			FB.login(function(response) {
 				if (response.authResponse) {
 					console.log('Welcome!  Fetching your information.... ');
-					getUser();
+					//getUser();
+					function callback(){
+						return function(){
+							$location.path( '/profile' );
+						}
+					}
+					userService.getUser(callback());
+
+
+
 				} else {
 					console.log('User cancelled login or did not fully authorize.');
 				}

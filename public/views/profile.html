@@ -1,0 +1,83 @@
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="../assets/css/setting.css">
+    <head>
+
+        <div id="nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"><i class="icon ion-ios-gear nav-icon" id="active_icon"></i>
+                        <h4>Settings </h4></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"> <i class="icon ion-heart nav-icon"></i>
+                         <h4>Settings </h4></a></div>
+                         <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><i class="icon ion-chatbox-working nav-icon"></i>
+                            <h4>Chat </h4></a></div>
+                        </div>
+                        <hr id="nav-line">
+                        <!--{{user}}-->
+                    </div>
+                </div>
+                <div class="setting-container">
+
+                    <div class="row">
+                        <div class="col-md-6"><img ng-src="{{user.picture.data.url}}" width="400" id="profile-img" class="img-circle"></div>
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group row" id="top">
+                                    <div class="label-container">
+                                        <label for="name" class="settings-label">Name:</label>
+                                    </div>
+                                    <input ng-model="user.first_name" class="form-control setting-input" type="text" name="name" required="" placeholder="Name" >
+                                </div>
+                                <div class="form-group row">
+                                    <div class="label-container">
+                                        <label for="age" class="settings-label">Age:</label>
+                                    </div>
+                                    <!--age not age range, facebook uses a age range-->
+                                    <input ng-model="user.age_range.min" class="form-control setting-input" type="number" name="age" required="" placeholder="Age" min="15" step="1" id="age">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="label-container">
+                                        <label for="gender" class="settings-label">I am a</label>
+                                    </div>
+                                    <!--default age is male/female/other not man/woman/other-->
+                                    <select ng-model="user.gender" class="form-control setting-input" name="gender" required="" id="gender">
+                                        <option value="1">Man</option>
+                                        <option value="2">Woman</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="label-container">
+                                        <label for="interest" class="settings-label">Looking for</label>
+                                    </div>
+                                    <select ng-model="user.looking_gender" class="form-control setting-input" name="interest" required="" id="interest">
+                                        <option value="2">Women</option>
+                                        <option value="1">Men</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <label class="btn btn-default btn-file settings-btn">
+                                    <strong>Upload Photo</strong> <input type="file" fileread="user.picture.data.url" style="display: none;">
+                                </label>
+                            </div>
+                            <div id="upload"><i class="glyphicon glyphicon-pencil hidden-xs icon-large" id="update-icon"></i>
+                                <label ng-click="update()" id="update" class="btn btn-default btn-file settings-btn">
+                                    <strong>Update</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea ng-model="user.aboutMe" class="input-lg" name="about-me" placeholder="About me..." autocomplete="off" id="about-me"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-center" id="contact-us"><strong>Contact us for help, support, or more info at venushelp@gmail.com</strong> </p>
+                        </div>
+                    </div>
+                </div>

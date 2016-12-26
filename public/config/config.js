@@ -8,6 +8,9 @@ angular.
         when('/', {
           template: '<login></login>'
         }).
+        when('/profile', {
+          template: '<profile></profile>'
+        }).
         otherwise('/');
     }
   ]);

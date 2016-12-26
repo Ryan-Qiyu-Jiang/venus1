@@ -4,6 +4,8 @@ var app=express();
 var mongojs=require('mongojs');
 var db=mongojs('venusUsers',['venusUsers']);
 var bodyParser=require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 var path = require('path');
 var graph = require('fbgraph');
 /*
@@ -101,11 +103,15 @@ app.get('/login/:id',function(req,res){
 app.put('/user/:id',function(req,res){
 	var id=req.params.id;
 	db.venusUsers.findAndModify({query: {id: id},
-		update: {$set: {first_name: req.body.first_name,last_name: req.body.last_name,picture:req.body.picture,age_range:req.body.age_range,gender:req.body.gender, email:req.body.email,friends:req.body.friends}},
-		new:true},function(err,doc){
-			res.json(doc);
-		}
-)
+		update: {$set: {first_name: req.body.first_name,
+			last_name: req.body.last_name,picture:req.body.picture,
+			age_range:req.body.age_range,gender:req.body.gender,
+			email:req.body.email,friends:req.body.friends,
+			aboutMe:req.body.aboutMe,looking_gender:req.body.looking_gender}},
+			new:true},function(err,doc){
+				res.json(doc);
+			}
+			)
 });
 
 
