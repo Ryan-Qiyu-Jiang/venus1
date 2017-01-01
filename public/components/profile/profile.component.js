@@ -14,6 +14,9 @@ component('profile', {
 		$scope.update=function(){
 			userService.set($scope.user);
 		};
+		$scope.check=function(){
+		userService.get_easy();
+	}
 	}]
 
     //controllerUrl:'../components/login/loginCtrl.controller.js'

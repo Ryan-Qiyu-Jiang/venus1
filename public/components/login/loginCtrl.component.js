@@ -55,11 +55,25 @@ component('login', {
 						console.log(response);
 						$scope.user=response;
 						//console.log($scope.user);
+
+						$scope.user.like_bool=new Set();
+						$scope.user.like_bool.add($scope.user.id);
+						$scope.user.matches=new Set();
+						$scope.user.matches.add($scope.user.id);
+						if($scope.user.gender==="male"){
+							$scope.user.gender="1";
+							$scope.user.looking_gender="2";
+						}else if($scope.user.gender==="female"){
+							$scope.user.gender="2";
+							$scope.user.looking_gender="1";
+						}
+
 						userService.signup($scope.user);
 						$http.post('/signup',$scope.user).then(function successCallback(response) {
 							    // this callback will be called asynchronously
 							    // when the response is available
 							    console.log(response);
+							    $location.path( '/profile' );
 							   //console.log(response.data);
 							}, function errorCallback(response) {
 							    // called asynchronously if an error occurs

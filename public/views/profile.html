@@ -7,16 +7,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"><i class="icon ion-ios-gear nav-icon" id="active_icon"></i>
-                        <h4>Settings </h4></div>
-                        <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"> <i class="icon ion-heart nav-icon"></i>
-                         <h4>Settings </h4></a></div>
-                         <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><i class="icon ion-chatbox-working nav-icon"></i>
-                            <h4>Chat </h4></a></div>
-                        </div>
-                        <hr id="nav-line">
-                        <!--{{user}}-->
+                         <h4>Settings </h4>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="/#!/explore"> <i class="icon ion-heart nav-icon"></i>
+                         <h4>Love </h4></a>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="#!/explore"><i class="icon ion-chatbox-working nav-icon"></i>
+                        <h4>Chat </h4></a>
                     </div>
                 </div>
+                        <hr id="nav-line">
+                         <!-- {{user}}-->
+            </div>
+        </div>
                 <div class="setting-container">
 
                     <div class="row">
@@ -55,6 +58,24 @@
                                         <option value="1">Men</option>
                                     </select>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1 form_col">
+                                        <div class="label_container_small">
+                                            <label class="control-label settings-label">Between </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-2 col-xs-3 form_col">
+                                        <input class="form-control" ng-model="user.looking_age_min" type="number" name="age" required="" placeholder="Age" step="1" id="age_min">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1 form_col">
+                                        <div class="label_container_small">
+                                            <label class="control-label settings-label">&amp; </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-2 col-xs-3 form_col">
+                                        <input class="form-control" ng-model="user.looking_age_max" type="number" name="age" required="" placeholder="Age"  step="1" id="age_max">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -62,7 +83,7 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="btn btn-default btn-file settings-btn">
-                                    <strong>Upload Photo</strong> <input type="file" fileread="user.picture.data.url" style="display: none;">
+                                    <strong>Upload Photo</strong> <input type="file" fileread="user.picture.data.url" ng-click="check()" style="display: none;">
                                 </label>
                             </div>
                             <div id="upload"><i class="glyphicon glyphicon-pencil hidden-xs icon-large" id="update-icon"></i>

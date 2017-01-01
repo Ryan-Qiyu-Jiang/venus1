@@ -107,13 +107,43 @@ app.put('/user/:id',function(req,res){
 			last_name: req.body.last_name,picture:req.body.picture,
 			age_range:req.body.age_range,gender:req.body.gender,
 			email:req.body.email,friends:req.body.friends,
-			aboutMe:req.body.aboutMe,looking_gender:req.body.looking_gender}},
+			aboutMe:req.body.aboutMe,looking_gender:req.body.looking_gender,
+			like_bool:req.body.like_bool,matches:req.body.matches,
+			looking_age_min:req.body.looking_age_min, looking_age_max:req.body.looking_age_max}},
 			new:true},function(err,doc){
 				res.json(doc);
 			}
 			)
 });
+app.put('/explore/like_bool/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.findAndModify({query:{id:id},
+	update:{
+		$set:{
+			like_bool:req.body.like_bool
+		}},new:true},function(err,doc){
+			res.json(doc);
+		}
+	)
+});
 
+app.put('/explore/matches/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.findAndModify({query:{id:id},
+	update:{
+		$set:{
+			matches:req.body.matches
+		}},new:true},function(err,doc){
+			res.json(doc);
+		}
+	)
+});
+
+app.get('/explore',function(req,res){
+	db.venusUsers.find({},function(err,docs){
+		res.json(docs);
+	})
+});
 
 app.listen(5000);
 console.log("venus server running");

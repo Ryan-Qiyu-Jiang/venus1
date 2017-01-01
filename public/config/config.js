@@ -11,6 +11,9 @@ angular.
         when('/profile', {
           template: '<profile></profile>'
         }).
+        when('/explore', {
+          template: '<explore></explore>'
+        }).
         otherwise('/');
     }
   ]);
