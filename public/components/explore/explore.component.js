@@ -9,10 +9,10 @@ component('explore', {
 		$scope.filters.raw_filter=false;
 		$scope.filters.all_filter=true;
 		$scope.filters.age_filter=true;
-		$scope.filters.location_filter=true;
+		$scope.filters.friends_filter=true;
 		$scope.filters.liked_filter=false;
 
-		console.log("hey from love controller");
+		console.log("hey from explore controller");
 		userService.get(function(data) {
 			$scope.user=data;console.log(data);
 		});
@@ -40,8 +40,61 @@ component('explore', {
 		$scope.liked_filter_expression = function(thisUser) {
 			return true;
 		};
+		$scope.friends_filter_expression = function(thisUser) {
+		var hasId=function(user){
+			console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
+			return (user.id==thisUser.id);
+		};
+			console.log($scope.user.friends.data.find(hasId)!==undefined);
+			return ($scope.user.friends.data.find(hasId)!==undefined);
+		};
 
-		$scope.likeable=function(user){
+			var rad= function(x) { return x * Math.PI / 180; };
+
+			  // Distance in kilometers between two points using the Haversine algo.
+			  var haversine= function(p1, p2) {
+			  	var R = 6371;
+			  	var dLat  = rad(p2.latitude - p1.latitude);
+			  	var dLong = rad(p2.longitude - p1.longitude);
+
+			  	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+			  	Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+			  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			  	var d = R * c;
+			  	console.log(Math.round(d));
+			  	return Math.round(d);
+			  };
+
+			  // Distance between me and the passed position.
+			  var distance_between= function(position, position2) {
+			  	return haversine(position.coords, position2);
+			  };
+
+
+			var check_distance=function(position){
+				$scope.user.location=position;
+			};
+
+		$scope.order_location=function(thisUser){
+			if ( navigator.geolocation ) { // Check that the browser supports geolocation.
+				  // Request current position and provide callbacks.
+				  if(thisUser.location=="undefined"){
+				  	return 9999999;
+				  }else{
+				  navigator.geolocation.getCurrentPosition(function(position){
+				  	distance_between(position,thisUser.location);
+				  });
+				}
+				  // Keep watching the position and call callbacks on change.
+				//  navigator.geolocation.watchPosition(Geolocation.distance_from);
+				} else {
+				  // Fallback gracefully if geolocation isn't working
+				  console.log("not working geo");
+				}
+				return 99999999;
+		};
+
+  $scope.likeable=function(user){
 		//	var test=[];
 		//	console.log(test);
 		//	console.log(Array.from($scope.user.like_bool));
@@ -143,8 +196,23 @@ component('explore', {
 			}
 		};
 
-		$scope.location_filter=function(){
-			$scope.filters.location_filter=(!$scope.filters.location_filter);
+		$scope.friends_filter=function(){
+			$scope.filters.friends_filter=(!$scope.filters.friends_filter);
+			if($scope.filters.friends_filter){
+						$scope.friends_filter_expression = function(thisUser) {
+		var hasId=function(user){
+			console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
+			return (user.id==thisUser.id);
+		};
+			console.log($scope.user.friends.data.find(hasId)!==undefined);
+			return ($scope.user.friends.data.find(hasId)!==undefined);
+		};
+			}else{
+				$scope.friends_filter_expression = function(thisUser) {
+					return true;
+				};
+			}
+
 		};
 		$scope.liked_filter=function(){
 			$scope.filters.liked_filter=(!$scope.filters.liked_filter);

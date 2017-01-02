@@ -32,11 +32,18 @@
                 <label class="explore_filter clickable" ng-class="{filter_on:filters.raw_filter}" ng-click="raw_filter()">RAW </label>
                 <label class="explore_filter clickable" ng-class="{filter_on:filters.all_filter}" ng-click="all_filter()">ALL </label>
                 <label class="explore_filter clickable" ng-class="{filter_on:filters.age_filter}" ng-click="age_filter()">AGE </label>
-                <label class="explore_filter clickable" ng-class="{filter_on:filters.location_filter}" ng-click="location_filter()">LOCATION </label>
+                <label class="explore_filter clickable" ng-class="{filter_on:filters.friends_filter}" ng-click="friends_filter()">FRIENDS </label>
                 <label class="explore_filter clickable" ng-class="{filter_on:filters.liked_filter}" ng-click="liked_filter()">LIKED </label>
             </div>
             <div class="row photos">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item" ng-repeat="thisUser in allUsers|filter:all_filter_expression|filter:age_filter_expression|filter:liked_filter_expression" ng-click="likeable(thisUser)">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item" ng-repeat="thisUser in allUsers
+                |filter:all_filter_expression
+                |filter:age_filter_expression
+                |filter:liked_filter_expression
+                |filter:friends_filter_expression
+                |orderBy: order_location
+                "
+                ng-click="likeable(thisUser)">
                     <img ng-src="{{thisUser.picture.data.url}}" class="img-responsive clickable" ng-class="{liked:user.like_bool.indexOf(thisUser.id)!==-1, matched:user.matches.indexOf(thisUser.id)!==-1 }"><span class="label label-default">{{thisUser.first_name}}</span>
                 </div>
 

@@ -109,7 +109,8 @@ app.put('/user/:id',function(req,res){
 			email:req.body.email,friends:req.body.friends,
 			aboutMe:req.body.aboutMe,looking_gender:req.body.looking_gender,
 			like_bool:req.body.like_bool,matches:req.body.matches,
-			looking_age_min:req.body.looking_age_min, looking_age_max:req.body.looking_age_max}},
+			looking_age_min:req.body.looking_age_min, looking_age_max:req.body.looking_age_max,
+			location:req.body.location}},
 			new:true},function(err,doc){
 				res.json(doc);
 			}
