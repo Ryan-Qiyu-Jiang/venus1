@@ -6,7 +6,10 @@ component('login', {
 	controller:['$scope','$http','$location','userService',
 	function($scope,$http,$location,userService){
 		console.log("hey from login controller");
-
+		$scope.alerts=[];
+		  $scope.closeAlert = function(index) {
+		    $scope.alerts.splice(index, 1);
+		  };
 		var editUser=function(){
 			$http.put('/user/'+$scope.user.id,$scope.user).then(function successCallback(response) {
 		    // this callback will be called asynchronously
@@ -58,8 +61,10 @@ component('login', {
 
 						$scope.user.like_bool=new Set();
 						$scope.user.like_bool.add($scope.user.id);
+						$scope.user.like_bool=Array.from($scope.user.like_bool);
 						$scope.user.matches=new Set();
 						$scope.user.matches.add($scope.user.id);
+						$scope.user.matches=Array.from($scope.user.matches);
 						if($scope.user.gender==="male"){
 							$scope.user.gender="1";
 							$scope.user.looking_gender="2";
@@ -67,7 +72,6 @@ component('login', {
 							$scope.user.gender="2";
 							$scope.user.looking_gender="1";
 						}
-
 						userService.signup($scope.user);
 						$http.post('/signup',$scope.user).then(function successCallback(response) {
 							    // this callback will be called asynchronously
@@ -101,13 +105,17 @@ component('login', {
 					//getUser();
 					function callback(){
 						return function(){
-							$location.path( '/profile' );
+						userService.get(function(data) {
+							if (data==null){
+								$scope.alerts.push({msg: 'Couldn\'t find you in the system! Sign up first :p'});
+							}else{
+								$location.path( '/profile' );
+							}
+						});
+
 						}
 					}
 					userService.getUser(callback());
-
-
-
 				} else {
 					console.log('User cancelled login or did not fully authorize.');
 				}

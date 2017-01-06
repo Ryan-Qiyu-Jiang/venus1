@@ -24,9 +24,7 @@ a:focus{
     color:#ffffff;
   text-decoration:none;
 }
-#active_nav{
-  color:#cf6169;
-}
+
 label#update.btn.btn-default.btn-file.settings-btn:hover {
   background-color:#87484c;
 }

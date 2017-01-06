@@ -5,6 +5,17 @@ component('explore', {
 	'views/explore.html',
 	controller:['$scope','$http','userService',
 	function($scope,$http,userService){
+		/*	$scope.$watch("$root.online", function(newStatus) {
+
+			$scope.user.is_online=newStatus;
+			var temp={is_online:newStatus};
+			$http.put("/explore/online/"+$scope.user.id, temp).then(function successCallback(response){
+				console.log(response);
+			}, function errorCallback(response){
+				console.log("backend api error");
+			});
+
+		});*/
 		$scope.filters={};
 		$scope.filters.raw_filter=false;
 		$scope.filters.all_filter=true;
@@ -13,11 +24,26 @@ component('explore', {
 		$scope.filters.liked_filter=false;
 
 		console.log("hey from explore controller");
+
+		var last_online=function(){
+			$scope.user.last_online=new Date().getTime();
+			var temp={last_online:$scope.user.last_online};
+			$http.put("/explore/last_online/"+$scope.user.id, temp).then(function successCallback(response){
+				console.log(response);
+			}, function errorCallback(response){
+				console.log("backend api error");
+			});
+		};
 		userService.get(function(data) {
-			$scope.user=data;console.log(data);
+			$scope.user= Object.assign({}, data) ;
+			last_online();
+			console.log(data);
+
 		});
+
 		//console.log();
-		$http.get('/explore').then(function successCallback(response) {
+		var getAll=function(){
+			$http.get('/explore').then(function successCallback(response) {
 					    // this callback will be called asynchronously
 					    // when the response is available
 					    //might be useful one day
@@ -28,13 +54,24 @@ component('explore', {
 					    // or server returns response with an error status.
 					    console.log("explore http error");
 					});
+		};
+		getAll();
+		var intervalID = setInterval(function(){
+			getAll();
+			last_online();
+			console.log($scope.user);
+		}, 10000);
+
+		$scope.gender_expression=function(thisUser){
+			return (($scope.user.looking_gender==thisUser.gender)&&($scope.user.gender==thisUser.looking_gender));
+		};
 
 		$scope.all_filter_expression = function(thisUser) {
-			return ($scope.user.like_bool.indexOf(thisUser.id)==-1);
+			return !($scope.user.like_bool)||($scope.user.like_bool.indexOf(thisUser.id)==-1);
 		};
 
 		$scope.age_filter_expression = function(thisUser) {
-			return ((thisUser.age_range.min<=$scope.user.looking_age_max)&&(thisUser.age_range.min>=$scope.user.looking_age_min));
+			return ((!$scope.user.looking_age_max)||(!$scope.user.looking_age_min)||((thisUser.age_range.min<=$scope.user.looking_age_max)&&(thisUser.age_range.min>=$scope.user.looking_age_min)));
 		};
 
 		$scope.liked_filter_expression = function(thisUser) {
@@ -42,11 +79,11 @@ component('explore', {
 		};
 		$scope.friends_filter_expression = function(thisUser) {
 		var hasId=function(user){
-			console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
+			//console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
 			return (user.id==thisUser.id);
 		};
-			console.log($scope.user.friends.data.find(hasId)!==undefined);
-			return ($scope.user.friends.data.find(hasId)!==undefined);
+			//console.log($scope.user.friends.data.find(hasId)!==undefined);
+			return !($scope.user.friends)||($scope.user.friends.data.find(hasId)!==undefined);
 		};
 
 			var rad= function(x) { return x * Math.PI / 180; };
@@ -61,7 +98,7 @@ component('explore', {
 			  	Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) * Math.sin(dLong/2) * Math.sin(dLong/2);
 			  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			  	var d = R * c;
-			  	console.log(Math.round(d));
+			  	//console.log(Math.round(d));
 			  	return Math.round(d);
 			  };
 
@@ -148,7 +185,7 @@ component('explore', {
 			userService.set($scope.user);
 
 		};
-
+		//console.log($scope.user.matches);
 		$scope.raw_filter=function(){
 
 			$scope.filters.raw_filter=(!$scope.filters.raw_filter);
@@ -160,7 +197,7 @@ component('explore', {
 			}else{
 				$scope.filters.all_filter=true;
 				$scope.all_filter_expression = function(thisUser) {
-					return ($scope.user.like_bool.indexOf(thisUser.id)==-1);
+					return !($scope.user.like_bool)||($scope.user.like_bool.indexOf(thisUser.id)==-1);
 				};
 			}
 		};
@@ -169,7 +206,7 @@ component('explore', {
 			if($scope.filters.all_filter){
 				$scope.filters.raw_filter=false;
 				$scope.all_filter_expression = function(thisUser) {
-					return ($scope.user.like_bool.indexOf(thisUser.id)==-1);
+					return !($scope.user.like_bool)||($scope.user.like_bool.indexOf(thisUser.id)==-1);
 				};
 				if($scope.filters.liked_filter){
 					$scope.liked_filter();
@@ -186,7 +223,7 @@ component('explore', {
 			if($scope.filters.age_filter){
 				console.log("on");
 				$scope.age_filter_expression = function(thisUser) {
-					return ((thisUser.age_range.min<=$scope.user.looking_age_max)&&(thisUser.age_range.min>=$scope.user.looking_age_min));
+					return ((!$scope.user.looking_age_max)||(!$scope.user.looking_age_min)||((thisUser.age_range.min<=$scope.user.looking_age_max)&&(thisUser.age_range.min>=$scope.user.looking_age_min)));
 				};
 			}else{
 				console.log("off");
@@ -201,10 +238,10 @@ component('explore', {
 			if($scope.filters.friends_filter){
 						$scope.friends_filter_expression = function(thisUser) {
 		var hasId=function(user){
-			console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
+		//	console.log(user.id+" =="+thisUser.id+" "+(user.id==thisUser.id));
 			return (user.id==thisUser.id);
 		};
-			console.log($scope.user.friends.data.find(hasId)!==undefined);
+			//console.log($scope.user.friends.data.find(hasId)!==undefined);
 			return ($scope.user.friends.data.find(hasId)!==undefined);
 		};
 			}else{

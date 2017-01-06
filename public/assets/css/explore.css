@@ -128,13 +128,13 @@ div#nav {
     //border-radius: 10px;
     border-width: 5px;
     border-color: #fff;
-    border-style: solid;
+    border-bottom-style: solid;
 }
 .matched{
     //border-radius: 10px;
     border-width: 5px;
     border-color: #cf6169;
-    border-style: solid;
+    border-bottom-style: solid;
 }
 
 .clickable{
@@ -158,6 +158,18 @@ label.explore_filter {
 
 label.filter_on.explore_filter {
   border-bottom:solid #b1585e;
+}
+.label-default{
+background-color: #2c2c2c;
+}
+
+span.dot{
+background: rgb(66, 183, 42);
+border-radius: 50%;
+display: inline-block;
+height: 6px;
+margin-left: 4px;
+width: 6px;
 }
 
 

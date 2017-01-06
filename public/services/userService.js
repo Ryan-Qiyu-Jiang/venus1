@@ -1,6 +1,5 @@
 venusApp.service('userService', function ($http) {
 	var userProfile="untouched";
-	var userClone=userProfile;
 	var getUserLocal=function(){
 
 		FB.api('/me', function(response) {
@@ -14,13 +13,13 @@ venusApp.service('userService', function ($http) {
 					    //might be useful one day
 					    userProfile=response.data;
 					    console.log(userProfile);
-					    return userProfile;
+
 					}, function errorCallback(response) {
 					    // called asynchronously if an error occurs
 					    // or server returns response with an error status.
 					    console.log("service fb.api error");
 					});
-						return userProfile;
+
 					});
 	}
 	return {
@@ -49,10 +48,9 @@ venusApp.service('userService', function ($http) {
 					    // when the response is available
 					    //might be useful one day
 					    userProfile=response.data;
-					    userClone=response.data;
 					    console.log(userProfile);
-					    callback(response.data);
-					    return response.data;
+					    callback( Object.assign({}, userProfile) );
+
 					}, function errorCallback(response) {
 					    // called asynchronously if an error occurs
 					    // or server returns response with an error status.
@@ -66,20 +64,16 @@ venusApp.service('userService', function ($http) {
 					}
 					//return userProfile;
 				});
-			}else{
-				console.log(userProfile);
-				callback(userClone);
-				return userClone;
-			}
-			callback(userProfile);
-			return userProfile;
+			} else {
+
+					callback(Object.assign({}, userProfile));
+				}
+
 		},
 		set: function(value) {
 			userProfile = value;
 			$http.put('user/'+userProfile.id, userProfile).then(function successCallback(response){
 				console.log(response);
-				console.log(userProfile);
-				userClone=userProfile;
 			}, function errorCallback(response){
 				console.log("backend api error");
 			});
@@ -88,12 +82,8 @@ venusApp.service('userService', function ($http) {
 		get_easy: function(){
 			console.log(userProfile);
 		},
-		get_clone:function(){
-			return userClone;
-		},
 		signup:function(value){
 			userProfile = value;
-			userClone=value;
 		},
 		//getUser: function(){
 	//		getUserLocal();
@@ -112,7 +102,6 @@ venusApp.service('userService', function ($http) {
 						    // when the response is available
 
 						    userProfile=response.data;
-						    userClone=response.data;
 						    console.log(userProfile);
 						    callback();
 						    return userProfile;

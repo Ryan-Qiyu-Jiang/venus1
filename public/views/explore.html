@@ -6,18 +6,18 @@
         <div id="nav">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"><a href="/#!/profile"><i class="icon ion-ios-gear nav-icon"></i>
+                    <div class="col-md-4 col-sm-4 col-xs-4"><a href="/#!/profile"><i class="icon ion-ios-gear nav-icon"></i>
                          <h4>Settings </h4></a>
                      </div>
-                     <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"> <i class="icon ion-heart nav-icon" id="active_icon"></i>
-                         <h4>Love </h4>
+                     <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"><i class="icon ion-heart nav-icon" id="active_icon"></i>
+                         <h4>Explore </h4>
                      </div>
                      <div class="col-md-4 col-sm-4 col-xs-4"><a href="#"><i class="icon ion-chatbox-working nav-icon"></i>
                         <h4>Chat </h4></a>
                     </div>
                 </div>
                         <hr id="nav-line">
-                     <!--{{user}}-->
+                     <!-- {{user}} -->
 
             </div>
         </div>
@@ -37,6 +37,7 @@
             </div>
             <div class="row photos">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item" ng-repeat="thisUser in allUsers
+                |filter:gender_expression
                 |filter:all_filter_expression
                 |filter:age_filter_expression
                 |filter:liked_filter_expression
@@ -44,7 +45,7 @@
                 |orderBy: order_location
                 "
                 ng-click="likeable(thisUser)">
-                    <img ng-src="{{thisUser.picture.data.url}}" class="img-responsive clickable" ng-class="{liked:user.like_bool.indexOf(thisUser.id)!==-1, matched:user.matches.indexOf(thisUser.id)!==-1 }"><span class="label label-default">{{thisUser.first_name}}</span>
+                    <img ng-src="{{thisUser.picture.data.url}}" class="img-responsive clickable" ng-class="{liked:user.like_bool.indexOf(thisUser.id)!==-1&&!(user.like_bool.length==undefined), matched:user.matches.indexOf(thisUser.id)!==-1&&!(user.matches.length==undefined) }"><span class="label label-default">{{thisUser.first_name}}</span><span ng-class="{dot:thisUser.last_online>user.last_online-60000}"></span>
                 </div>
 
             </div>

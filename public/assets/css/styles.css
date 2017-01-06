@@ -1,3 +1,11 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.ng-cloak {
+    opacity: 0;
+}
+
 #signup {
   margin-top:100px;
   height:900px;
@@ -225,5 +233,16 @@ h4, .h4, h5, .h5, h6, .h6 {
 }
 
 
+.alert-danger.pink{
+    background-color: #cf6169;
+    border-color: #cf6169;
+    margin-top: 20px;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
 
-
+#active_nav{
+  color:#cf6169;
+}

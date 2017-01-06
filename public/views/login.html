@@ -57,4 +57,5 @@
                     </div>
                 </uib-tab>
       </uib-tabset>
+          <div uib-alert ng-repeat="alert in alerts" class="in alert-danger pink" dismiss-on-timeout="3000" close="closeAlert($index)">{{alert.msg}}</div>
       </div>

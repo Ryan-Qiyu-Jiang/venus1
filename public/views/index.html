@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html ng-app="venusApp">
+<html ng-app="venusApp" class="ng-cloak">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venus</title>
-    <script src="../config/facebook_SDK.js"></script>
+        <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '344273665958321',
+        xfbml      : true,
+        version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+    <!--<script src="../config/facebook_SDK.js"></script>-->
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
     <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
@@ -12,9 +29,9 @@
     <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
 	<!--<link rel='stylesheet' href='public/assets/stylesheets/style.css' />-->
 </head>
-<body>
+<body ng-cloak>
 
-<div ng-view></div>
+<div ng-view ></div>
 
 </body>
     <div class="footer-basic">

@@ -127,6 +127,36 @@ app.put('/explore/like_bool/:id',function(req,res){
 		}
 	)
 });
+app.put('/explore/online/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.findAndModify({query:{id:id},
+	update:{
+		$set:{
+			is_online:req.body.is_online
+		}},new:true},function(err,doc){
+			res.json(doc);
+		}
+	)
+});
+
+app.put('/explore/last_online/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.findAndModify({query:{id:id},
+	update:{
+		$set:{
+			last_online:req.body.last_online
+		}},new:true},function(err,doc){
+			res.json(doc);
+		}
+	)
+});
+
+app.delete('/profile/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.remove({id:id},function(err,docs){
+		res.json(docs);
+	})
+});
 
 app.put('/explore/matches/:id',function(req,res){
 	var id=req.params.id;
