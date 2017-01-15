@@ -8,22 +8,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 var path = require('path');
 var graph = require('fbgraph');
-/*
-var request = require('request');
-var OAuth2 = require('oauth2').OAuth2;
-var oauth2 = new OAuth2("344273665958321",
-                        "443b1280884670cb185fd59d2aa5731e",
-                       "", "https://www.facebook.com/dialog/oauth",
-                   "https://graph.facebook.com/oauth/access_token",
-                   null);
 
-app.get('/facebook/auth',function (req, res) {
-      var redirect_uri = "http://localhost:5000" +    "/";
-      // For eg. "http://localhost:3000/facebook/callback"
-      var params = {'redirect_uri': redirect_uri, 'scope':'user_about_me,publish_actions'};
-      res.redirect(oauth2.getAuthorizeUrl(params));
-});
-*/
 //CONFIG STUFF i'm lazy so its here
 var conf = {
 	client_id:      '344273665958321'
@@ -172,6 +157,13 @@ app.put('/explore/matches/:id',function(req,res){
 
 app.get('/explore',function(req,res){
 	db.venusUsers.find({},function(err,docs){
+		res.json(docs);
+	})
+});
+
+app.get('/chat/:id',function(req,res){
+	var id=req.params.id;
+	db.venusUsers.findOne({id: id},function(err,docs){
 		res.json(docs);
 	})
 });

@@ -14,6 +14,9 @@ angular.
         when('/explore', {
           template: '<explore></explore>'
         }).
+        when('/chat', {
+          template: '<allchat></allchat>'
+        }).
         otherwise('/');
     }
   ]);

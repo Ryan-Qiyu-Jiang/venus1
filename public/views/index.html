@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="venusApp" class="ng-cloak">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venus</title>
-        <script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venus</title>
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
+  <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+  <link rel="stylesheet" href="../assets/css/explore.css">
+  <link rel="stylesheet" href="../assets/css/setting.css">
+  <link rel="stylesheet" href="../assets/css/animation.css">
+  <link rel="stylesheet" href="../assets/css/chat-general.css">
+  <!--<link rel='stylesheet' href='public/assets/stylesheets/style.css' />-->
+</head>
+
+<body ng-cloak>
+<!--
+ <script>
   window.fbAsyncInit = function() {
     FB.init({
         appId      : '344273665958321',
         xfbml      : true,
         version    : 'v2.8'
     });
+
   };
 
   (function(d, s, id){
@@ -20,51 +35,48 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>
-    <!--<script src="../config/facebook_SDK.js"></script>-->
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
-    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
-	<!--<link rel='stylesheet' href='public/assets/stylesheets/style.css' />-->
-</head>
-<body ng-cloak>
+ </script> -->
 
-<div ng-view ></div>
+ <div class="view-container">
+  <div ng-view ></div>
+</div>
 
 </body>
-    <div class="footer-basic">
-        <footer>
-            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
-            <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
-            <p class="copyright">Venus © 2017</p>
-        </footer>
-    </div>
+<div class="footer-basic">
+  <footer>
+    <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+    <ul class="list-inline">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+    <p class="copyright">Venus © 2017</p>
+  </footer>
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular-route.js"></script>
-	<script src="../components/login/loginCtrl.module.js"></script>
-	<script src="../components/profile/profile.module.js"></script>
-    <script src="../components/explore/explore.module.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular-animate.js"></script>
+<script src="../components/login/loginCtrl.module.js"></script>
+<script src="../components/profile/profile.module.js"></script>
+<script src="../components/explore/explore.module.js"></script>
+<script src="../components/allchat/allchat.module.js"></script>
 <script src="../components/module.js"></script>
 <script src="../services/userService.js"></script>
 <script src="../config/config.js"></script>
-	<script src="../components/login/loginCtrl.controller.js"></script>
-	<script src="../components/login/loginCtrl.component.js"></script>
-	<script src="../components/profile/profile.controller.js"></script>
-	<script src="../components/profile/profile.component.js"></script>
-    <script src="../components/explore/explore.component.js"></script>
-	    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
+<script src="../components/login/loginCtrl.controller.js"></script>
+<script src="../components/login/loginCtrl.component.js"></script>
+<script src="../components/profile/profile.controller.js"></script>
+<script src="../components/profile/profile.component.js"></script>
+<script src="../components/explore/explore.component.js"></script>
+<script src="../components/allchat/allchat.component.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
 
 </html>

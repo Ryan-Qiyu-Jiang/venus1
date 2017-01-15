@@ -1,0 +1,69 @@
+div.under_text {
+  color:#cccccc !important;
+}
+div.under_text:hover {
+  color:#cccccc;
+}
+
+div.user_chat_lines :hover {
+  // border-bottom:transparent;
+  // border-top:transparent;
+  color:rgba(225,104,118,1);
+}
+
+div.user_chat_lines {
+  // border-bottom:#cccccc solid 1px;
+  // border-top:#cccccc solid 1px;
+  // margin-bottom:5px;
+  // transition: all 0.3s ease-in-out
+}
+
+div.row.chat_user {
+ // margin:0;
+  cursor:pointer;
+  border-bottom:#cccccc solid 1px;
+  border-top:#cccccc solid 1px;
+  margin-bottom:5px;
+  transition: all 0.3s ease-in-out
+}
+
+div.row.chat_user :hover {
+  border-bottom:transparent;
+  border-top:transparent;
+  transition: all 0.3s ease-in-out
+}
+
+img.thumbnail_chat {
+  padding:10px;
+  margin-left:15px;
+  border-radius:50%;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+
+small.facebook_name {
+  font-style:italic;
+  padding-left:15px;
+}
+
+small.under_date {
+  float:right;
+}
+
+// div.col-md-9.chat_text {
+//   text-align:left;
+//   margin-left:15px;
+// }
+.chat_text {
+  text-align:left;
+  margin-left:20px;
+  padding-top:0;
+}
+
+small.last_message {
+}
+
+div#matches_chat {
+  margin-top:50px;
+  padding:0 40px;
+}

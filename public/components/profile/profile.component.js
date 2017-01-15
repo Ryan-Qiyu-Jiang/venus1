@@ -21,12 +21,13 @@ component('profile', {
 		};
 
 		userService.get(function(data) {
-			$scope.user=data;console.log(data);
+			$scope.user=data;
+			console.log(data);
 			navigator.geolocation.getCurrentPosition(geoSuccess);
 		});
 
 		$scope.update=function(){
-			userService.set($scope.user);
+			userService.set(Object.assign({}, $scope.user));
 		};
 		$scope.check=function(){
 			userService.get_easy();

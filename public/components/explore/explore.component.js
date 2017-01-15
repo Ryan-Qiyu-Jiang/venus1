@@ -60,7 +60,7 @@ component('explore', {
 			getAll();
 			last_online();
 			console.log($scope.user);
-		}, 10000);
+		}, 1000000);
 
 		$scope.gender_expression=function(thisUser){
 			return (($scope.user.looking_gender==thisUser.gender)&&($scope.user.gender==thisUser.looking_gender));

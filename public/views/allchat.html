@@ -1,0 +1,45 @@
+     <head>
+    <title>Chat</title>
+    <head>
+
+        <div id="nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4"><a href="/#!/profile"><i class="icon ion-ios-gear nav-icon"></i>
+                         <h4>Settings </h4></a>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4"><a href="/#!/explore"><i class="icon ion-heart nav-icon"></i>
+                         <h4>Explore </h4></a>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4" id="active_nav"><i class="icon ion-chatbox-working nav-icon" id="active_icon"></i>
+                        <h4>Chat </h4>
+                    </div>
+                </div>
+                <hr id="nav-line">
+                     <!-- {{user}} -->
+            </div>
+        </div>
+
+    <div class="setting-container">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Carpe Diem ; Seize the Day :)</h2>
+                <p class="text-center">Fortune smiles on the bold, take the lead, coffee is a great start!</p>
+            </div>
+
+            <div id="matches_chat" >
+
+                <div class="user_chat_lines" ng-repeat="user in allchat"> <!--|orderBy:last_online-->
+                    <div class="row chat_user">
+                        <div class="col-md-2 col-md-offset-0"><img ng-src="{{user.picture.data.url}}" width="100" height="100" class="thumbnail_chat"></div>
+                        <div class="col-md-9 chat_text">
+                            <h2 class="text-left chat_name">{{user.first_name}}</h2>
+                            <div class="under_text"><small class="under_date">{{user.timeStamp}} </small><small>So coffee next Friday? &lt;3 ;)</small><small class="facebook_name">- @{{user.last_name}} </small></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
